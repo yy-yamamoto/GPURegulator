@@ -60,12 +60,12 @@ install:
 
 uninstall:
 	@echo "Uninstalling GPURegulator..."
-	# Stop and disable the service
-	systemctl stop $(SERVICE_FILE)
-	systemctl disable $(SERVICE_FILE)
 	# Stop and disable the timer
 	systemctl stop $(TIMER_FILE)
 	systemctl disable $(TIMER_FILE)
+	# Stop and disable the service
+	systemctl stop $(SERVICE_FILE)
+	systemctl disable $(SERVICE_FILE)
 	# Remove installed files
 	rm -rf $(INSTALL_DIR)
 	rm -f $(SERVICE_DIR)/$(SERVICE_FILE)
