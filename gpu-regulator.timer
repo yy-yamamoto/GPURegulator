@@ -1,0 +1,9 @@
+[Unit]
+Description=Run GPU Regulator Service periodically
+
+[Timer]
+OnUnitActiveSec=5min
+Unit=gpu-regulator.service
+
+[Install]
+WantedBy=timers.target

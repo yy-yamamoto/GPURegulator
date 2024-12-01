@@ -1,0 +1,19 @@
+[Unit]
+Description=GPU Regulator Service
+After=network.target
+
+[Service]
+StandardError=append:/var/log/gpu_regulator.log
+StandardOutput=append:/var/log/gpu_regulator.log
+StandardError=append:/var/log/gpu_regulator.log
+StandardOutput=append:/var/log/gpu_regulator.log
+StandardError=append:/var/log/gpu_regulator.log
+StandardOutput=append:/var/log/gpu_regulator.log
+ExecStart=/usr/bin/env MAX_GPU_PER_USER=1 GPU_MEMORY_THRESHOLD_MB=128 /usr/bin/python3 /opt/gpu-regulator/gpu_regulator.py
+User=root
+Group=root
+StandardOutput=append:/var/log/gpu_regulator.log
+StandardError=append:/var/log/gpu_regulator.log
+
+[Install]
+WantedBy=multi-user.target
