@@ -44,8 +44,8 @@ install:
 	echo "}" >> $(LOGROTATE_FILE)
 	# Update service file with logging configuration
 	sed -i "s|ExecStart=.*|ExecStart=/usr/bin/env MAX_GPU_PER_USER=$(MAX_GPU_PER_USER) GPU_MEMORY_THRESHOLD_MB=$(GPU_MEMORY_THRESHOLD_MB) /usr/bin/python3 $(INSTALL_DIR)/$(PYTHON_SCRIPT)|" $(SERVICE_FILE)
-	sed -i "/\[Service\]/a StandardOutput=append:$(LOG_FILE)" $(SERVICE_FILE)
-	sed -i "/\[Service\]/a StandardError=append:$(LOG_FILE)" $(SERVICE_FILE)
+	sed -i "s|StandardOutput=.*|StandardOutput=append:$(LOG_FILE)|" $(SERVICE_FILE)
+	sed -i "s|StandardError=.*|StandardError=append:$(LOG_FILE)|" $(SERVICE_FILE)
 	# Update timer file with execution interval
 	sed -i "s|OnUnitActiveSec=.*|OnUnitActiveSec=$(EXEC_INTERVAL)|" $(TIMER_FILE)
 	# Install systemd service and timer
